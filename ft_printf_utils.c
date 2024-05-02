@@ -14,7 +14,9 @@
 
 int	ft_print_char(char c)
 {
-	return (write(1, &c, 1));
+	if (write(1, &c, 1) < 0)
+		return (-1);
+	return (1);
 }
 
 int	ft_print_string(char *s)
@@ -25,7 +27,11 @@ int	ft_print_string(char *s)
 		return (ft_print_string("(null)"));
 	count = 0;
 	while (*s)
-		count += write(1, s++, 1);
+	{
+		if (write(1, s++, 1) < 0)
+			return (-1);
+		count++;
+	}
 	return (count);
 }
 
@@ -37,11 +43,4 @@ int	ft_getlen(char *s)
 	while (s[i])
 		i++;
 	return (i);
-}
-
-int	ft_isprint(int c)
-{
-	if (c >= 0040 && c <= 0176)
-		return (c);
-	return (0);
 }

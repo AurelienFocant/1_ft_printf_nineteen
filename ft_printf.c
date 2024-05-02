@@ -43,6 +43,7 @@ int	ft_parse_arg(char c, va_list *arg)
 int	ft_printf(const char *format, ...)
 {
 	int		count;
+	int		a;
 	va_list	arg;
 
 	va_start(arg, format);
@@ -50,9 +51,12 @@ int	ft_printf(const char *format, ...)
 	while (*format)
 	{
 		if (*format == '%')
-			count += ft_parse_arg(*++format, &arg);
+			a = ft_parse_arg(*++format, &arg);
 		else
-			count += ft_print_char(*format);
+			a = ft_print_char(*format);
+		if (a < 0)
+			return (-1);
+		count += a;
 		format++;
 	}
 	va_end(arg);
