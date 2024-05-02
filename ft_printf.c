@@ -1,89 +1,16 @@
-#include <stdlib.h>
-#include <stdarg.h>
-#include <unistd.h>
-#include <limits.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/02 16:48:56 by afocant           #+#    #+#             */
+/*   Updated: 2024/05/02 17:19:31 by afocant          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	ft_strlen(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-int	ft_print_char(char c)
-{
-	return (write(1, &c, 1));
-}
-
-int	ft_print_string(char *s)
-{
-	int	count;
-
-	if (!s)
-		return (ft_print_string("(null)"));
-	count = 0;
-	while (*s)
-		count += write(1, s++, 1);
-	return (count);
-}
-
-int	ft_print_unsigned_nbr_base(unsigned int n, char *base)
-{
-	size_t	len_base;
-	int		count;
-
-	count = 0;
-	len_base = ft_strlen(base);
-	if (n >= len_base)
-		count += ft_print_unsigned_nbr_base(n / len_base, base);
-	return (count += ft_print_char(base[n % len_base]));
-}
-
-int	ft_print_nbr_base(int n, char *base)
-{
-	size_t	len_base;
-	int		count;
-
-	count = 0;
-	len_base = ft_strlen(base);
-	if (n == INT_MIN)
-	{
-		count += ft_print_nbr_base(n / (int)len_base, base);
-		return (count += ft_print_char(base[n % len_base]));
-	}
-	if (n < 0)
-	{
-		n = -n;
-		count += ft_print_char('-');
-	}
-	if ((size_t) n >= len_base)
-		count += ft_print_nbr_base(n / len_base, base);
-	return (count += ft_print_char(base[n % len_base]));
-}
-
-int	ft_print_ptr_base(unsigned long long n, char *base)
-{
-	size_t	len_base;
-	int		count;
-
-	count = 0;
-	len_base = ft_strlen(base);
-	if (n >= len_base)
-		count += ft_print_ptr_base(n / len_base, base);
-	return (count += ft_print_char(base[n % len_base]));
-}
-
-int	ft_print_ptr(unsigned long long n)
-{
-	int	count;
-
-	count = 0;
-	count += ft_print_string("0x");
-	return (count += ft_print_ptr_base(n, "0123456789abcdef"));
-}
+#include "ft_printf.h"
 
 int	ft_parse_arg(char c, va_list *arg)
 {
@@ -108,6 +35,8 @@ int	ft_parse_arg(char c, va_list *arg)
 		count += ft_print_char(va_arg(*arg, int));
 	else if (c == '%')
 		count += ft_print_char('%');
+	else
+		return (-1);
 	return (count);
 }
 
@@ -129,35 +58,3 @@ int	ft_printf(const char *format, ...)
 	va_end(arg);
 	return (count);
 }
-/*
-
-#include <stdio.h>
-
-int main()
-{
-	int n = 5;
-
-	ft_printf("nb chars: %i\n", ft_printf("hey %X you %s, address %p\n", 123, "hello", &n));
-	ft_printf("\n");
-	printf("nb chars: %i\n", printf("hey %X you %s, address %p\n", 123, "hello", &n));
-
-
-	printf("%s\n", (char *)NULL);
-	ft_printf("%s\n", (char *)NULL);
-}
-
-int main()
-{
-	//ft_printf("%p\n", "");
-	//printf("%p\n", "");
-
-	ft_printf("%x\n", -10);
-	printf("%x\n", -10);
-}
-
-int main()
-{
-	printf("%i\n", INT_MIN);
-	ft_printf("%i\n", INT_MIN);
-}
-*/

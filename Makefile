@@ -7,6 +7,8 @@ DFLAG = -g
 NAME = libftprintf.a
 
 SRC = ft_printf.c \
+	  ft_print_numbers.c \
+	  ft_printf_utils.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -25,6 +27,6 @@ fclean: clean
 	rm -rf $(NAME)
 	rm -rf *.out*
 
-re: fclean make
+re: fclean all
 
 .PHONY = all clean fclean re
