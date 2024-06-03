@@ -20,6 +20,31 @@ int	ft_print_nbr_base(int n, char *base)
 
 	count = 0;
 	len_base = ft_getlen(base);
+	if (n < 0)
+	{
+		count += ft_print_neg_nbr_base(n, base);
+		if (count < 0)
+			return (-1);
+		return (count);
+	}
+	if ((size_t) n >= len_base)
+	{
+		a = ft_print_nbr_base(n / len_base, base);
+		if (a < 0)
+			return (-1);
+		count += a;
+	}
+	if (ft_print_char(base[n % len_base]) < 0)
+		return (-1);
+	count++;
+	return (count);
+}
+
+int	ft_print_neg_nbr_base(int n, char *base)
+{
+	int	count;
+
+	count = 0;
 	if (n == -2147483648)
 	{
 		count = ft_print_string("-2147483648");
@@ -34,16 +59,7 @@ int	ft_print_nbr_base(int n, char *base)
 			return (-1);
 		count++;
 	}
-	if ((size_t) n >= len_base)
-	{
-		a = ft_print_nbr_base(n / len_base, base);
-		if (a < 0)
-			return (-1);
-		count += a;
-	}
-	if (ft_print_char(base[n % len_base]) < 0)
-		return (-1);
-	count++;
+	count += ft_print_nbr_base(n, base);
 	return (count);
 }
 
