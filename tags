@@ -1,0 +1,11 @@
+Mmain	main.c	/^int	main(void)$/
+ft_getlen	ft_printf_utils.c	/^int	ft_getlen(char *s)$/
+ft_parse_arg	ft_printf.c	/^int	ft_parse_arg(char c, va_list *arg)$/
+ft_print_char	ft_printf_utils.c	/^int	ft_print_char(char c)$/
+ft_print_nbr_base	ft_print_nbr.c	/^int	ft_print_nbr_base(int n, char *base)$/
+ft_print_neg_nbr	ft_print_nbr.c	/^int	ft_print_neg_nbr(int n, char *base)$/
+ft_print_ptr	ft_print_ptr.c	/^int	ft_print_ptr(unsigned long long n)$/
+ft_print_ptr_base	ft_print_ptr.c	/^int	ft_print_ptr_base(unsigned long long n, char */
+ft_print_string	ft_printf_utils.c	/^int	ft_print_string(char *s)$/
+ft_print_unsigned_nbr_base	ft_print_nbr.c	/^int	ft_print_unsigned_nbr_base(unsigned int n, cha/
+ft_printf	ft_printf.c	/^int	ft_printf(const char *format, ...)$/

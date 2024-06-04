@@ -7,7 +7,8 @@ DFLAG = -g
 NAME = libftprintf.a
 
 SRC = ft_printf.c \
-	  ft_print_numbers.c \
+	  ft_print_nbr.c \
+	  ft_print_ptr.c \
 	  ft_printf_utils.c \
 
 OBJ = $(SRC:.c=.o)
