@@ -1,4 +1,3 @@
-Mmain	main.c	/^int	main(void)$/
 ft_getlen	ft_printf_utils.c	/^int	ft_getlen(char *s)$/
 ft_parse_arg	ft_printf.c	/^int	ft_parse_arg(char c, va_list *arg)$/
 ft_print_char	ft_printf_utils.c	/^int	ft_print_char(char c)$/
