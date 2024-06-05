@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:20:39 by afocant           #+#    #+#             */
-/*   Updated: 2024/05/06 12:22:07 by afocant          ###   ########.fr       */
+/*   Updated: 2024/06/05 13:24:14 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_print_ptr(unsigned long long n)
 	if (count < 0)
 		return (-1);
 	count += ft_print_ptr_base(n, "0123456789abcdef");
-	if (count < 0)
+	if (count < ft_getlen("0x"))
 		return (-1);
 	return (count);
 }
